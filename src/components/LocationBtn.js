@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
+import {Button,Glyphicon} from 'react-bootstrap';
 
 class LocationBtn extends Component{
   handleClick(){
@@ -8,7 +8,7 @@ class LocationBtn extends Component{
 render(){
 
 return(
-  <Button onClick={(e)=>this.handleClick(e)} block bsStyle='warning'>Определить местоположение</Button>
+  <Button onClick={(e)=>this.handleClick(e)} bsStyle='success'><Glyphicon glyph="flag" /></Button>
 );
 }
 }

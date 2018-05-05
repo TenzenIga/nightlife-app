@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 module.exports = function () {
 
   var db = mongoose.connect('mongodb://Zeta:5522@ds211289.mlab.com:11289/passport-users');
-
+  //const db = mongoose.connect('mongodb://localhost:27017/night-app');
   var UserSchema = new Schema({
     twitterProvider: {
       type: {
@@ -15,7 +15,6 @@ module.exports = function () {
       select: false
     }
   });
-
   UserSchema.set('toJSON', {getters: true, virtuals: true});
 
   UserSchema.statics.upsertTwitterUser = function(token, tokenSecret, profile, cb) {

@@ -1,46 +1,34 @@
 import React, {Component} from 'react';
-import {Button} from 'react-bootstrap';
 import TwitterLogin from 'react-twitter-auth/lib/react-twitter-auth-component.js';
-import { Route, Link, Switch, Redirect} from 'react-router-dom';
 class GoingBtn extends Component{
   constructor(props) {
       super(props);
       this.handleClick = this.handleClick.bind(this)
-      this.state = {
-        user:null,
-        token: '',
-        isAuthenticated:this.props.isAuthenticated,
-        going:0
-      }
+
     }
     handleClick() {
-
-      let {going} = this.state
-      going++;
-      this.setState({
-
-        going:going
-      })
-
+    this.props.vote(this.props.index, this.props.placeid, this.props.name);
 }
-
 
 render(){
   let content = !!this.props.isAuthenticated ?
     (
-      <div>
-          <button onClick={this.handleClick} className="button" >
-          Going-{this.state.going}</button>
+    <div>
+          {this.props.isVoted?
+            (<button onClick={(e)=>this.handleClick(e)} className="voteButtonOff">Отмена</button>)
+            :
+          (<button onClick={(e)=>this.handleClick(e)} className="voteButtonOn">Пойду</button>)
+        }
         </div>
-
     ) :
     (
-      <TwitterLogin loginUrl="http://localhost:4000/api/v1/auth/twitter"
+      <TwitterLogin loginUrl="/api/v1/auth/twitter"
                     onFailure={this.props.onFailed} onSuccess={this.props.onSuccess}
-                    requestTokenUrl="http://localhost:4000/api/v1/auth/twitter/reverse"
-                    showIcon={true} >
-Going - {this.state.going}
-                    </TwitterLogin>
+                    requestTokenUrl="/api/v1/auth/twitter/reverse"
+                    showIcon={true}
+                    className='voteButtonOn'
+                     >Пойду
+      </TwitterLogin>
 
     );
  return(

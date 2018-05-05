@@ -3,7 +3,7 @@ import {Panel} from 'react-bootstrap';
 
 const Header = ()=>(
 <Panel.Heading className='heading text-center'>
-  <Panel.Title componentClass="h3">Nightlife!</Panel.Title>
+  <Panel.Title componentClass="h3"></Panel.Title>
 </Panel.Heading>
 );
 
